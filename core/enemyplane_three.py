@@ -30,6 +30,7 @@ class EnemyPlaneThree(Plane):
         self.plane_crash_image5 = os.path.join(images_path, 'enemy3_down5.png')
         # * 被子弹打中6(化成烟)
         self.plane_crash_image6 = os.path.join(images_path, 'enemy3_down6.png')
+        self.plane_crash_image_lis = [self.plane_crash_image1, self.plane_crash_image2, self.plane_crash_image3, self.plane_crash_image4, self.plane_crash_image5]
         # * 打子弹的
         self.plane_hit_image = os.path.join(images_path, 'enemy3_hit.png')
         # * 机毁音乐
@@ -87,13 +88,16 @@ class EnemyPlaneThree(Plane):
                 self.left_move = True
 
     def draw(self, while_count=None):
+        # 检查血量更换图片
+        self.check_blood(self.plane_crash_image_lis)
+
         # 表示多少秒后boss 出现
         if not self.arise_flag:
             if time.time() - self.game_start_time > self.arise_time:
                 # 出现标志
                 self.arise_flag = True
                 pg.mixer.music.load(game_music[-3])
-                pg.mixer.music.play()
+                pg.mixer.music.play(-1)
                 # boss出场的音乐
                 self.boss_arise_music.play()
             elif time.time() - self.game_start_time > self.arise_time - 2:
@@ -105,7 +109,10 @@ class EnemyPlaneThree(Plane):
             plane = self.get_surface()
             # * 绘制敌方飞机
             self.screen.blit(plane, (self.x, self.y))
-            pg.draw.rect(self.screen, (255, 0, 0), [self.x, self.y - 5, int(plane.get_width() * (self.life / self.sum_life)), 5])
+            if self.life / self.sum_life > 0.2:
+                pg.draw.rect(self.screen, (0, 255, 0), [self.x, self.y - 5, int(plane.get_width() * (self.life / self.sum_life)), 5])
+            else:
+                pg.draw.rect(self.screen, (255, 0, 0), [self.x, self.y - 5, int(plane.get_width() * (self.life / self.sum_life)), 5])
             # 飞机默认往下飞，直到一个位置停住
             self.down()
             # 开始左右移动

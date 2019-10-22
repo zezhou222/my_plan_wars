@@ -23,6 +23,7 @@ class EnemyPlaneTwo(Plane):
         self.plane_crash_image3 = os.path.join(images_path, 'enemy2_down3.png')
         # * 被子弹打中4(化成烟)
         self.plane_crash_image4 = os.path.join(images_path, 'enemy2_down4.png')
+        self.plane_crash_image_lis = [self.plane_crash_image1, self.plane_crash_image2, self.plane_crash_image3]
         # * 打子弹的图
         self.plane_hit_image = os.path.join(images_path, 'enemy2_hit.png')
         # * 机毁音乐
@@ -58,19 +59,28 @@ class EnemyPlaneTwo(Plane):
             y -= self.window_height
             self.set_init_position(x, y)
 
+
+
     def draw(self, while_count=None):
+        # 检查血量更换图片
+        self.check_blood(self.plane_crash_image_lis)
+
         if self.active:
             # * 绘制敌方飞机
             self.screen.blit(self.get_surface(), (self.x, self.y))
             # * 画血条
             plane = self.get_surface()
-            pg.draw.rect(self.screen, (255, 0, 0), [self.x, self.y - 5, int(plane.get_width() * (self.life / self.sum_life)), 5])
+            if self.life / self.sum_life > 0.2:
+                pg.draw.rect(self.screen, (0, 255, 0), [self.x, self.y - 5, int(plane.get_width() * (self.life / self.sum_life)), 5])
+            else:
+                pg.draw.rect(self.screen, (255, 0, 0), [self.x, self.y - 5, int(plane.get_width() * (self.life / self.sum_life)), 5])
             # 飞机默认往下飞
             self.down()
         else:
             # * 绘制炸掉的图
-            temp = pg.image.load(self.plane_crash_image4)
-            self.screen.blit(temp, (self.x, self.y))
+            # temp = pg.image.load(self.plane_crash_image4)
+            # self.screen.blit(temp, (self.x, self.y))
+            self.screen.blit(self.plane, (self.x, self.y))
             # * 播放音乐
             self.plane_destroy_music.play()
 

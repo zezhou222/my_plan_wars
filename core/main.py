@@ -292,12 +292,7 @@ class MyGame(object):
             now_x, now_y = pg.mouse.get_pos()
             # 监测开始游戏的
             if again_x <= now_x <= again_x + self.again_img.get_width() and again_y <= now_y <= again_y + self.again_img.get_height():
-                self.over_flag = False
-                self.running_flag = True
-                # 初始化游戏运行的资源
-                self.game_running_init()
-                # 放游戏音乐
-                pg.mixer.music.play(loops=-1)
+                self.again_game()
                 return
 
     def pass_func_init(self):
@@ -343,12 +338,7 @@ class MyGame(object):
             now_x, now_y = pg.mouse.get_pos()
             # 监测开始游戏的
             if again_x <= now_x <= again_x + self.again_img.get_width() and again_y <= now_y <= again_y + self.again_img.get_height():
-                self.over_flag = False
-                self.running_flag = True
-                # 初始化游戏运行的资源
-                self.game_running_init()
-                # 放游戏音乐
-                pg.mixer.music.play(loops=-1)
+                self.again_game()
                 return
 
         if self.temp_count < self.plane.score:
@@ -356,6 +346,16 @@ class MyGame(object):
                 self.temp_count += 1
             else:
                 self.temp_count += 100
+
+    def again_game(self):
+        self.over_flag = False
+        self.running_flag = True
+        # 初始化游戏运行的资源
+        self.game_running_init()
+        self.pass_func_init()
+        # 放游戏音乐
+        pg.mixer.music.load(game_music[-1])
+        pg.mixer.music.play(loops=-1)
 
     def run(self):
         while not self.exit_flag:

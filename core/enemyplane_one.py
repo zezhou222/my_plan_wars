@@ -23,6 +23,7 @@ class EnemyPlaneOne(Plane):
         self.plane_crash_image3 = os.path.join(images_path, 'enemy1_down3.png')
         # * 被子弹打中4(化成烟)
         self.plane_crash_image4 = os.path.join(images_path, 'enemy1_down4.png')
+        self.plane_crash_image_lis = [self.plane_crash_image1, self.plane_crash_image2, self.plane_crash_image3]
         # * 机毁音乐
         self.plane_destroy_music = pg.mixer.Sound(enemy1_destroy_music_path)
         self.plane_destroy_music.set_volume(0.3)
@@ -57,6 +58,9 @@ class EnemyPlaneOne(Plane):
             self.set_init_position(x, y)
 
     def draw(self, while_count=None):
+        # 检查血量更换图片
+        self.check_blood(self.plane_crash_image_lis)
+
         if self.active:
             # * 绘制敌方飞机
             self.screen.blit(self.get_surface(), (self.x, self.y))
