@@ -13,7 +13,7 @@ class Bullet(object):
         self.plane = plane
 
         if flag:
-            bullet_img = os.path.join(images_path, 'bullet2.png')
+            bullet_img = os.path.join(images_path, 'bullet1.png')
             self.bullet = pg.image.load(bullet_img)
             self.ad = 10
 

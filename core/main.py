@@ -1,4 +1,5 @@
 import os
+import time
 
 import pygame as pg
 from conf.settings import (
@@ -11,8 +12,10 @@ from conf.settings import (
 from lib.global_func import (
     get_random_filename
 )
-from core.myplane import MyPlane
-from core.enemyplane import EnemyPlane
+from core.enemyplane_one import EnemyPlaneOne
+from core.enemyplane_two import EnemyPlaneTwo
+from core.enemyplane_three import EnemyPlaneThree
+from core.hero import Hero
 
 
 class MyGame(object):
@@ -53,6 +56,8 @@ class MyGame(object):
         self.game_running_init()
         # 游戏结束的
         self.game_over_init()
+        # 通过的
+        self.pass_func_init()
 
         # 退出标志
         self.exit_flag = False
@@ -116,16 +121,19 @@ class MyGame(object):
                         self.game_pause = False
 
     def pass_through(self):
+        pg.time.delay(200)
+
         # 绘制内容
         # * 所有的敌机炸毁
         if self.enemy_plane_obj_lis:
             obj = self.enemy_plane_obj_lis.pop(0)
-            obj.active = False
-            obj.draw()
-            pg.time.delay(200)
+            if obj.active is True and type(obj) is not EnemyPlaneThree:
+                obj.active = False
+                obj.draw()
         # * 绘制其它还未炸毁的飞机
         for obj in self.enemy_plane_obj_lis:
-            self.screen.blit(obj.get_surface(), (obj.x, obj.y))
+            if obj.active is True:
+                self.screen.blit(obj.get_surface(), (obj.x, obj.y))
         # * 绘制自己的飞机
         for obj in self.plane_obj_lis:
             self.screen.blit(obj.get_surface(), (obj.x, obj.y))
@@ -134,14 +142,16 @@ class MyGame(object):
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 self.exit_flag = True
-            elif event.type == self.BOOSDEAD:
-                # 设置全局标志位
-                self.running_flag = False
-                self.pass_flag = True
+
+        # 5秒后结束
+        if time.time() - self.pass_start_time > 5:
+            # 设置全局标志位
+            self.running_flag = False
+            self.pass_flag = True
 
     def game_running_init(self):
         # 自己飞机对象
-        self.plane = MyPlane()
+        self.plane = Hero()
         self.plane_obj_lis = [self.plane]
         # 敌机飞机对象
         self.enemy_plane_obj_lis = []
@@ -149,29 +159,25 @@ class MyGame(object):
         self.enemy_two_level = 1
         # 初始化敌人对象
         for i in range(self.enemy_one_level):
-            obj = EnemyPlane()
+            obj = EnemyPlaneOne()
             self.enemy_plane_obj_lis.append(obj)
         for i in range(self.enemy_two_level):
-            obj = EnemyPlane(enemy_level=2)
+            obj = EnemyPlaneTwo()
             self.enemy_plane_obj_lis.append(obj)
         # 大boss
-        self.enemy_three_level_obj = EnemyPlane(enemy_level=3)
-        self.BOOSARISE = pg.USEREVENT
-        # 多少秒后出场
-        arise_time = 60
-        pg.time.set_timer(self.BOOSARISE, arise_time * 1000)
-        # 出场音乐
-        self.boss_arise_music = pg.mixer.Sound(enemy3_flying_music_path)
-        self.boss_arise_music.set_volume(0.6)
-        # 死亡自定义事件
-        self.BOOSDEAD = pg.USEREVENT + 1
-
+        self.enemy_three_level_obj = EnemyPlaneThree()
+        self.enemy_three_level_obj.game_start_time = time.time()
+        self.enemy_plane_obj_lis.append(self.enemy_three_level_obj)
         # 计数器(用于延迟子弹发射)
         self.count = 0
         # 游戏暂停标志
         self.game_pause = False
         # 过关标志
         self.pass_through_flag = False
+        self.pass_start_time = 0
+        # 生命数的图片
+        life_imge = os.path.join(images_path, 'life.png')
+        self.life = pg.image.load(life_imge)
 
     def game_running(self):
         # 判断游戏暂停，进入暂停的事件循环
@@ -184,31 +190,6 @@ class MyGame(object):
             self.pass_through()
             return
 
-        # 内容
-        # * 绘制敌方飞机
-        for obj in self.enemy_plane_obj_lis:
-            ret = obj.draw(self.count)
-            # 过关判断，大boss挂了
-            if ret is True:
-                self.pass_through_flag = True
-                # 停止主音乐
-                pg.mixer.music.fadeout(2)
-                # 在多少秒后发送游戏结束事件
-                pg.time.set_timer(self.BOOSDEAD, 5 * 1000)
-                return
-        # * 绘制自己飞机方面的(子弹，自己的飞机等)
-        for obj in self.plane_obj_lis:
-            obj.draw(self.count)
-        # * 输出游戏fps
-        game_fps = str(int(self.clock_obj.get_fps())) + " fps"
-        text = self.small_font.render(game_fps, 1, (0, 0, 0))
-        text_x = self.window_width - text.get_width()
-        text_y = 0
-        self.screen.blit(text, (text_x, text_y))
-        # * 绘制分数
-        text = self.middle_font.render("Score:%s" % self.plane.score, 1, (0, 0, 0))
-        self.screen.blit(text, (0, 0))
-
         # 碰撞检测
         # * 检测主角和敌机身体的碰撞
         ret = self.plane.collision_detection(self.enemy_plane_obj_lis)
@@ -219,6 +200,35 @@ class MyGame(object):
             pg.mixer.music.stop()
         # * 检测主角飞的子弹和敌机身体的碰撞
         self.plane.bullet_collision_detection(self.enemy_plane_obj_lis)
+
+        # 内容
+        # * 绘制敌方飞机
+        for obj in self.enemy_plane_obj_lis:
+            ret = obj.draw(self.count)
+            # 过关判断，大boss挂了
+            if ret is True:
+                # 让其进入通关的事件循环中
+                self.pass_through_flag = True
+                # 通过的时间
+                self.pass_start_time = time.time()
+                return
+        # * 绘制自己飞机方面的(子弹，自己的飞机等)
+        for obj in self.plane_obj_lis:
+            obj.draw(self.count)
+        # * 绘制生命条数
+        for index in range(self.plane.life_num, 0, -1):
+            x = self.window_width - (self.life.get_width() * index)
+            y = self.window_height - self.life.get_height()
+            self.screen.blit(self.life, (x, y))
+        # * 输出游戏fps
+        game_fps = str(int(self.clock_obj.get_fps())) + " fps"
+        text = self.small_font.render(game_fps, 1, (0, 0, 0))
+        text_x = self.window_width - text.get_width()
+        text_y = 0
+        self.screen.blit(text, (text_x, text_y))
+        # * 绘制分数
+        text = self.middle_font.render("Score:%s" % self.plane.score, 1, (0, 0, 0))
+        self.screen.blit(text, (0, 0))
 
         # 事件
         for event in pg.event.get():
@@ -240,9 +250,6 @@ class MyGame(object):
                         pg.mixer.music.pause()
                         # 暂停标志
                         self.game_pause = True
-            elif event.type == self.BOOSARISE:
-                self.enemy_plane_obj_lis.append(self.enemy_three_level_obj)
-                self.boss_arise_music.play()
 
         # 主角的上下左右的长按事件
         key_pressed = pg.key.get_pressed()
@@ -293,22 +300,33 @@ class MyGame(object):
                 pg.mixer.music.play(loops=-1)
                 return
 
+    def pass_func_init(self):
+        # 临时计数变量
+        self.temp_count = self.plane.score
+
     def pass_func(self):
         # 渲染
-        # * 成绩
-        text = self.middle_font.render("总分数:%s" % self.plane.score, 1, (0, 0, 0))
-        text_x = self.window_width // 2 - (text.get_width() // 2)
-        text_y = 180
-        self.screen.blit(text, (text_x, text_y))
-        # * so good!
-        text2 = self.middle_font.render("so good!", 1, (0, 0, 0))
-        text_x = self.window_width // 2 - (text2.get_width() // 2)
-        text_y = 180 + text.get_height() + 50
-        self.screen.blit(text2, (text_x, text_y))
-        # * 重新开始
-        again_x = self.window_width // 2 - (self.gamestart_img.get_width() // 2)
-        again_y = self.window_height // 2
-        self.screen.blit(self.again_img, (again_x, again_y))
+        if self.temp_count >= self.plane.score:
+            # * 成绩
+            text = self.middle_font.render("总分数:%s" % self.plane.score, 1, (0, 0, 0))
+            text_x = self.window_width // 2 - (text.get_width() // 2)
+            text_y = 180
+            self.screen.blit(text, (text_x, text_y))
+            # * so good!
+            text2 = self.middle_font.render("so good!", 1, (0, 0, 0))
+            text_x = self.window_width // 2 - (text2.get_width() // 2)
+            text_y = 180 + text.get_height() + 50
+            self.screen.blit(text2, (text_x, text_y))
+            # * 重新开始
+            again_x = self.window_width // 2 - (self.gamestart_img.get_width() // 2)
+            again_y = self.window_height // 2
+            self.screen.blit(self.again_img, (again_x, again_y))
+        else:
+            # * 成绩
+            text = self.middle_font.render("总分数:%s" % self.temp_count, 1, (0, 0, 0))
+            text_x = self.window_width // 2 - (text.get_width() // 2)
+            text_y = 180
+            self.screen.blit(text, (text_x, text_y))
 
         # 事件
         for event in pg.event.get():
@@ -321,7 +339,7 @@ class MyGame(object):
                     pg.image.save(self.screen, file_path)
 
         # 鼠标左键的点击事件监测
-        if pg.mouse.get_pressed()[0]:
+        if self.temp_count == self.plane.score and pg.mouse.get_pressed()[0]:
             now_x, now_y = pg.mouse.get_pos()
             # 监测开始游戏的
             if again_x <= now_x <= again_x + self.again_img.get_width() and again_y <= now_y <= again_y + self.again_img.get_height():
@@ -332,6 +350,12 @@ class MyGame(object):
                 # 放游戏音乐
                 pg.mixer.music.play(loops=-1)
                 return
+
+        if self.temp_count < self.plane.score:
+            if self.plane.score - self.temp_count < 100:
+                self.temp_count += 1
+            else:
+                self.temp_count += 100
 
     def run(self):
         while not self.exit_flag:

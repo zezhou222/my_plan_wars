@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e0089c71-0587-4021-aba6-472e02ecb676" name="Default Changelist" comment="" />
+    <list default="true" id="e0089c71-0587-4021-aba6-472e02ecb676" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/core/enemyplane_one.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/enemyplane_three.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/enemyplane_two.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/hero.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/plane.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/conf/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/bullet.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/bullet.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/enemyplane.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/myplane.py" beforeDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -10,45 +22,50 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/my_plane_wars$main.coverage" NAME="main Coverage Results" MODIFIED="1571391355820" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/core" />
-    <SUITE FILE_PATH="coverage/my_plane_wars$run.coverage" NAME="run Coverage Results" MODIFIED="1571654689714" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/my_plane_wars$run.coverage" NAME="run Coverage Results" MODIFIED="1571747973006" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FUSProjectUsageTrigger">
     <session id="-1681025247">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="4" />
+          <entry key="project.closed" value="5" />
           <entry key="project.open.time.10" value="1" />
+          <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.4" value="2" />
           <entry key="project.open.time.7" value="1" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.opened" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="jpeg" value="4" />
           <entry key="jpg" value="3" />
+          <entry key="md" value="1" />
           <entry key="png" value="13" />
-          <entry key="py" value="63" />
+          <entry key="py" value="89" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Image" value="20" />
-          <entry key="Python" value="63" />
+          <entry key="Markdown" value="1" />
+          <entry key="Python" value="89" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Python Console" value="31" />
           <entry key="dummy" value="4" />
-          <entry key="py" value="17195" />
+          <entry key="md" value="57" />
+          <entry key="py" value="21724" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
+          <entry key="Markdown" value="57" />
           <entry key="PLAIN_TEXT" value="4" />
-          <entry key="Python" value="17226" />
+          <entry key="Python" value="21755" />
         </counts>
       </usages-collector>
     </session>
@@ -57,87 +74,153 @@
     <favorites_list name="my_plane_wars" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2401">
-              <caret line="197" column="22" lean-forward="true" selection-start-line="197" selection-start-column="22" selection-end-line="197" selection-end-column="22" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-                <marker date="1571654052609" expanded="true" signature="3506:3515" ph="..." />
-                <marker date="1571654052609" expanded="true" signature="3506:4254" ph="..." />
-                <marker date="1571654052609" expanded="true" signature="8435:8540" ph="..." />
-                <marker date="1571654052609" expanded="true" signature="9650:11263" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/bullet.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-8">
-              <caret line="28" column="26" lean-forward="true" selection-start-line="28" selection-start-column="26" selection-end-line="28" selection-end-column="26" />
-              <folding>
-                <element signature="e#0#19#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/core/enemyplane.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-169">
-              <caret line="43" column="27" lean-forward="true" selection-start-line="43" selection-start-column="27" selection-end-line="43" selection-end-column="27" />
-              <folding>
-                <element signature="e#0#19#0" expanded="true" />
-                <marker date="1571654052724" expanded="true" signature="202:203" ph="..." />
-                <marker date="1571654052724" expanded="true" signature="3303:3551" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/myplane.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="39">
-              <caret line="135" column="35" selection-start-line="135" selection-start-column="35" selection-end-line="135" selection-end-column="35" />
-              <folding>
-                <element signature="e#0#19#0" expanded="true" />
-                <marker date="1571652799807" expanded="true" signature="179:180" ph="..." />
-                <marker date="1571652799807" expanded="true" signature="179:185" ph="..." />
-                <marker date="1571652799807" expanded="true" signature="2504:2571" ph="..." />
-                <marker date="1571652799807" expanded="true" signature="3425:4513" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/conf/settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="282">
-              <caret line="31" column="57" selection-start-line="31" selection-start-column="57" selection-end-line="31" selection-end-column="57" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/global_func.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="5" selection-start-line="5" selection-end-line="5" />
-              <folding>
-                <marker date="1571386195017" expanded="true" signature="51:56" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.57843924">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/core/main.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="3624">
+                  <caret line="358" lean-forward="true" selection-start-line="358" selection-end-line="358" />
+                  <folding>
+                    <element signature="e#0#9#0" expanded="true" />
+                    <marker date="1571746920305" expanded="true" signature="3687:3696" ph="..." />
+                    <marker date="1571746920305" expanded="true" signature="3687:4533" ph="..." />
+                    <marker date="1571746920305" expanded="true" signature="5582:5591" ph="..." />
+                    <marker date="1571746920305" expanded="true" signature="8680:8785" ph="..." />
+                    <marker date="1571746920305" expanded="true" signature="9900:9966" ph="..." />
+                    <marker date="1571746920305" expanded="true" signature="9986:12208" ph="..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/core/bullet.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-136">
+                  <caret line="15" column="59" selection-start-line="15" selection-start-column="59" selection-end-line="15" selection-end-column="59" />
+                  <folding>
+                    <element signature="e#0#19#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/core/plane.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="220">
+                  <caret line="17" column="52" lean-forward="true" selection-start-line="17" selection-start-column="52" selection-end-line="17" selection-end-column="52" />
+                  <folding>
+                    <marker date="1571745804200" expanded="true" signature="42:996" ph="..." />
+                    <marker date="1571745804200" expanded="true" signature="635:691" ph="..." />
+                    <marker date="1571745804200" expanded="true" signature="777:995" ph="..." />
+                    <marker date="1571745804200" expanded="true" signature="912:947" ph="..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/core/enemyplane_one.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="617">
+                  <caret line="27" column="47" selection-start-line="27" selection-start-column="47" selection-end-line="27" selection-end-column="47" />
+                  <folding>
+                    <element signature="e#0#13#0" expanded="true" />
+                    <marker date="1571747403644" expanded="true" signature="181:1416" ph="..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/core/enemyplane_two.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="167">
+                  <caret line="29" column="47" selection-start-line="29" selection-start-column="47" selection-end-line="29" selection-end-column="47" />
+                  <folding>
+                    <element signature="e#0#13#0" expanded="true" />
+                    <marker date="1571747403719" expanded="true" signature="181:1509" ph="..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/core/enemyplane_three.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="315">
+                  <caret line="100" column="48" lean-forward="true" selection-start-line="100" selection-start-column="48" selection-end-line="100" selection-end-column="48" />
+                  <folding>
+                    <element signature="e#0#9#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/conf/settings.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="143">
+                  <caret line="11" column="6" lean-forward="true" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/core/hero.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1039">
+                  <caret line="155" column="25" lean-forward="true" selection-start-line="155" selection-start-column="25" selection-end-line="155" selection-end-column="25" />
+                  <folding>
+                    <element signature="e#0#9#0" expanded="true" />
+                    <marker date="1571747521443" expanded="true" signature="2683:2688" ph="..." />
+                    <marker date="1571747521443" expanded="true" signature="2704:3012" ph="..." />
+                    <marker date="1571747521443" expanded="true" signature="5113:5239" ph="..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/lib/global_func.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="135">
+                  <caret line="5" selection-start-line="5" selection-end-line="5" />
+                  <folding>
+                    <marker date="1571386195017" expanded="true" signature="51:56" ph="..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/core/main.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="66">
+                  <caret line="251" column="46" selection-start-line="251" selection-start-column="46" selection-end-line="251" selection-end-column="46" />
+                  <folding>
+                    <element signature="e#0#9#0" expanded="true" />
+                    <marker date="1571746920305" expanded="true" signature="3687:3696" ph="..." />
+                    <marker date="1571746920305" expanded="true" signature="3687:4533" ph="..." />
+                    <marker date="1571746920305" expanded="true" signature="5582:5591" ph="..." />
+                    <marker date="1571746920305" expanded="true" signature="8680:8785" ph="..." />
+                    <marker date="1571746920305" expanded="true" signature="9900:9966" ph="..." />
+                    <marker date="1571746920305" expanded="true" signature="9986:12208" ph="..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -155,17 +238,26 @@
       <find>26</find>
     </findStrings>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/core/plane_wars.py" />
         <option value="$PROJECT_DIR$/lib/global_func.py" />
         <option value="$PROJECT_DIR$/run.py" />
-        <option value="$PROJECT_DIR$/core/bullet.py" />
-        <option value="$PROJECT_DIR$/conf/settings.py" />
+        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/core/myplane.py" />
-        <option value="$PROJECT_DIR$/core/main.py" />
         <option value="$PROJECT_DIR$/core/enemyplane.py" />
+        <option value="$PROJECT_DIR$/core/plane.py" />
+        <option value="$PROJECT_DIR$/core/bullet.py" />
+        <option value="$PROJECT_DIR$/core/main.py" />
+        <option value="$PROJECT_DIR$/conf/settings.py" />
+        <option value="$PROJECT_DIR$/core/enemyplane_one.py" />
+        <option value="$PROJECT_DIR$/core/enemyplane_two.py" />
+        <option value="$PROJECT_DIR$/core/hero.py" />
+        <option value="$PROJECT_DIR$/core/enemyplane_three.py" />
       </list>
     </option>
   </component>
@@ -175,18 +267,18 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="580" />
     <option name="y" value="50" />
     <option name="width" value="1355" />
     <option name="height" value="945" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -197,35 +289,18 @@
             <path>
               <item name="my_plane_wars" type="b2602c69:ProjectViewProjectNode" />
               <item name="my_plane_wars" type="462c0819:PsiDirectoryNode" />
+              <item name="conf" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="my_plane_wars" type="b2602c69:ProjectViewProjectNode" />
+              <item name="my_plane_wars" type="462c0819:PsiDirectoryNode" />
               <item name="core" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="my_plane_wars" type="b2602c69:ProjectViewProjectNode" />
-              <item name="my_plane_wars" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="my_plane_wars" type="b2602c69:ProjectViewProjectNode" />
-              <item name="my_plane_wars" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="font" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="my_plane_wars" type="b2602c69:ProjectViewProjectNode" />
-              <item name="my_plane_wars" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="music" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="my_plane_wars" type="b2602c69:ProjectViewProjectNode" />
-              <item name="my_plane_wars" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="screenshot" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -333,11 +408,11 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Favorites" order="0" sideWeight="0.506542" side_tool="true" weight="0.16487935" />
-      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49345794" visible="true" weight="0.16487935" />
+      <window_info id="Favorites" order="0" sideWeight="0.5089463" side_tool="true" visible="true" weight="0.16689008" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49105367" visible="true" weight="0.16689008" />
       <window_info id="Structure" order="2" sideWeight="0.50460404" side_tool="true" weight="0.11930295" />
       <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="1" />
@@ -347,7 +422,7 @@
       <window_info anchor="bottom" id="Docker" order="5" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="6" />
       <window_info anchor="bottom" id="Find" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="8" visible="true" weight="0.23167156" />
+      <window_info active="true" anchor="bottom" id="Run" order="8" visible="true" weight="0.2613803" />
       <window_info anchor="bottom" id="Debug" order="9" weight="0.398827" />
       <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
@@ -493,13 +568,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/-1919165755/pygame/time.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="37" column="4" selection-start-line="37" selection-start-column="4" selection-end-line="37" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/-1919165755/pygame/constants.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="386">
@@ -507,10 +575,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/conf/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="31" column="57" selection-start-line="31" selection-start-column="57" selection-end-line="31" selection-end-column="57" />
+    <entry file="file://$PROJECT_DIR$/static/screenshot/4776ac40-acca-4aab-b926-1fea29c584c9.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/screenshot/6c4dd49e-14b3-4aa9-b92c-eaf84c1c6ad3.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="108">
+            <caret line="4" column="5" lean-forward="true" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
@@ -524,58 +601,120 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/screenshot/4776ac40-acca-4aab-b926-1fea29c584c9.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/screenshot/6c4dd49e-14b3-4aa9-b92c-eaf84c1c6ad3.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/main.py">
+    <entry file="file://$PROJECT_DIR$/core/enemyplane.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2401">
-          <caret line="197" column="22" lean-forward="true" selection-start-line="197" selection-start-column="22" selection-end-line="197" selection-end-column="22" />
+        <state relative-caret-position="276">
+          <caret line="138" column="55" lean-forward="true" selection-start-line="138" selection-start-column="55" selection-end-line="138" selection-end-column="55" />
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
-            <marker date="1571654052609" expanded="true" signature="3506:3515" ph="..." />
-            <marker date="1571654052609" expanded="true" signature="3506:4254" ph="..." />
-            <marker date="1571654052609" expanded="true" signature="8435:8540" ph="..." />
-            <marker date="1571654052609" expanded="true" signature="9650:11263" ph="..." />
+            <element signature="e#0#19#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/myplane.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="39">
-          <caret line="135" column="35" selection-start-line="135" selection-start-column="35" selection-end-line="135" selection-end-column="35" />
+        <state relative-caret-position="270">
+          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-            <marker date="1571652799807" expanded="true" signature="179:180" ph="..." />
-            <marker date="1571652799807" expanded="true" signature="179:185" ph="..." />
-            <marker date="1571652799807" expanded="true" signature="2504:2571" ph="..." />
-            <marker date="1571652799807" expanded="true" signature="3425:4513" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/-1919165755/pygame/time.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="35" column="8" lean-forward="true" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/bullet.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="28" column="26" lean-forward="true" selection-start-line="28" selection-start-column="26" selection-end-line="28" selection-end-column="26" />
+        <state relative-caret-position="-136">
+          <caret line="15" column="59" selection-start-line="15" selection-start-column="59" selection-end-line="15" selection-end-column="59" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/enemyplane.py">
+    <entry file="file://$PROJECT_DIR$/core/plane.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-169">
-          <caret line="43" column="27" lean-forward="true" selection-start-line="43" selection-start-column="27" selection-end-line="43" selection-end-column="27" />
+        <state relative-caret-position="220">
+          <caret line="17" column="52" lean-forward="true" selection-start-line="17" selection-start-column="52" selection-end-line="17" selection-end-column="52" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
-            <marker date="1571654052724" expanded="true" signature="202:203" ph="..." />
-            <marker date="1571654052724" expanded="true" signature="3303:3551" ph="..." />
+            <marker date="1571745804200" expanded="true" signature="42:996" ph="..." />
+            <marker date="1571745804200" expanded="true" signature="635:691" ph="..." />
+            <marker date="1571745804200" expanded="true" signature="777:995" ph="..." />
+            <marker date="1571745804200" expanded="true" signature="912:947" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/conf/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="11" column="6" lean-forward="true" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/hero.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1039">
+          <caret line="155" column="25" lean-forward="true" selection-start-line="155" selection-start-column="25" selection-end-line="155" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+            <marker date="1571747521443" expanded="true" signature="2683:2688" ph="..." />
+            <marker date="1571747521443" expanded="true" signature="2704:3012" ph="..." />
+            <marker date="1571747521443" expanded="true" signature="5113:5239" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3624">
+          <caret line="358" lean-forward="true" selection-start-line="358" selection-end-line="358" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+            <marker date="1571746920305" expanded="true" signature="3687:3696" ph="..." />
+            <marker date="1571746920305" expanded="true" signature="3687:4533" ph="..." />
+            <marker date="1571746920305" expanded="true" signature="5582:5591" ph="..." />
+            <marker date="1571746920305" expanded="true" signature="8680:8785" ph="..." />
+            <marker date="1571746920305" expanded="true" signature="9900:9966" ph="..." />
+            <marker date="1571746920305" expanded="true" signature="9986:12208" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/enemyplane_two.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="29" column="47" selection-start-line="29" selection-start-column="47" selection-end-line="29" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+            <marker date="1571747403719" expanded="true" signature="181:1509" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/enemyplane_one.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="617">
+          <caret line="27" column="47" selection-start-line="27" selection-start-column="47" selection-end-line="27" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+            <marker date="1571747403644" expanded="true" signature="181:1416" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/enemyplane_three.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="100" column="48" lean-forward="true" selection-start-line="100" selection-start-column="48" selection-end-line="100" selection-end-column="48" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
