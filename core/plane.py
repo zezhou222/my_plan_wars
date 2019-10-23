@@ -42,14 +42,15 @@ class Plane(object):
     def get_surface(self):
         return self.plane
 
-    # 根据不同血量更换敌机图片
+    # 根据不同血量更换敌机surface对象
     def check_blood(self, plane_crash_image_lis):
         list_length = len(plane_crash_image_lis)
         avg_blood = self.sum_life / (list_length+1)
+        # 敌机血量很健康，不更换图片(默认是普通形式的)
         if self.life >= avg_blood * list_length:
             return
-
+        # 血量在正常下，进行血量区间判断更换
         for index in range(list_length, 0, -1):
             if avg_blood * (index-1) <= self.life < avg_blood * index:
-                self.plane = pg.image.load(plane_crash_image_lis[list_length - index])
+                self.plane = plane_crash_image_lis[list_length - index]
                 return

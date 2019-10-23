@@ -7,8 +7,8 @@ from conf.settings import (
     font_path,
     screentshot_path,
     images_path,
-    enemy3_flying_music_path
 )
+from core.supply import BlackBulletSupply, BombSupply
 from lib.global_func import (
     get_random_filename
 )
@@ -62,7 +62,7 @@ class MyGame(object):
         # 退出标志
         self.exit_flag = False
         # 鼠标是否显示的标志
-        self.mouse_visible = True
+        self.mouse_visible = False
         # 运行标志
         self.running_flag = False
         # 结束标志
@@ -155,6 +155,7 @@ class MyGame(object):
         self.plane_obj_lis = [self.plane]
         # 敌机飞机对象
         self.enemy_plane_obj_lis = []
+        self.enemy_plane_two_obj_lis = []
         self.enemy_one_level = 10
         self.enemy_two_level = 1
         # 初始化敌人对象
@@ -164,6 +165,7 @@ class MyGame(object):
         for i in range(self.enemy_two_level):
             obj = EnemyPlaneTwo()
             self.enemy_plane_obj_lis.append(obj)
+            self.enemy_plane_two_obj_lis.append(obj)
         # 大boss
         self.enemy_three_level_obj = EnemyPlaneThree()
         self.enemy_three_level_obj.game_start_time = time.time()
@@ -178,6 +180,23 @@ class MyGame(object):
         # 生命数的图片
         life_imge = os.path.join(images_path, 'life.png')
         self.life = pg.image.load(life_imge)
+        # 供给列表(红色子弹，炸弹等)
+        self.supply_lis = []
+        # 黑色子弹的补给
+        self.black_bullet_arise_time = 20
+        self.black_bullet_arrive = pg.USEREVENT
+        pg.time.set_timer(self.black_bullet_arrive, self.black_bullet_arise_time * 1000)
+        # 炸弹补给
+        self.bomb_arise_time = 60
+        self.bomb_arrive = pg.USEREVENT + 1
+        pg.time.set_timer(self.bomb_arrive, self.bomb_arise_time * 1000)
+
+    def hero_dead(self):
+        # 主角挂了
+        self.running_flag = False
+        self.over_flag = True
+        # * 关闭主音乐
+        pg.mixer.music.stop()
 
     def game_running(self):
         # 判断游戏暂停，进入暂停的事件循环
@@ -192,14 +211,31 @@ class MyGame(object):
 
         # 碰撞检测
         # * 检测主角和敌机身体的碰撞
-        ret = self.plane.collision_detection(self.enemy_plane_obj_lis)
-        if ret is True:
-            self.running_flag = False
-            self.over_flag = True
-            # * 关闭主音乐
-            pg.mixer.music.stop()
+        flag = self.plane.collision_detection(self.enemy_plane_obj_lis)
+        if flag is True:
+            self.hero_dead()
         # * 检测主角飞的子弹和敌机身体的碰撞
         self.plane.bullet_collision_detection(self.enemy_plane_obj_lis)
+        # * 监测敌机角色2的子弹碰撞
+        for obj in self.enemy_plane_two_obj_lis:
+            ret = obj.bullet_collision_detection(self.plane_obj_lis)
+            if ret is True:
+                self.hero_dead()
+                break
+        # * 检测敌机boss的子弹碰撞
+        ret = self.enemy_three_level_obj.bullet_collision_detection(self.plane_obj_lis)
+        if ret is True:
+            self.hero_dead()
+        # * 供给的碰撞监测
+        for obj in self.supply_lis:
+            ret = obj.supply_collision_detection(self.plane_obj_lis)
+            # ** 如果有监测到则在供给列表中删除(表示有人得到供给，要删除不再绘制)
+            if ret:
+                self.supply_lis.remove(ret)
+        # * 监测主角使用屏幕炸弹
+        for obj in self.plane_obj_lis:
+            if obj.bomb_obj is not None and pg.mouse.get_pressed()[0] == 1:
+                obj.bomb_obj.use(self.enemy_plane_obj_lis)
 
         # 内容
         # * 绘制敌方飞机
@@ -212,13 +248,25 @@ class MyGame(object):
                 # 通过的时间
                 self.pass_start_time = time.time()
                 return
+        # * 绘制供给
+        for obj in self.supply_lis:
+            obj.draw()
         # * 绘制自己飞机方面的(子弹，自己的飞机等)
         for obj in self.plane_obj_lis:
             obj.draw(self.count)
+        # * 绘制自己的血量
+        blood_height = 10
+        pg.draw.rect(self.screen, (255, 0, 0), [0, self.window_height-blood_height, self.window_width * (self.plane.life / self.plane.sum_life), blood_height])
+        # * 绘制血量百分比
+        blood_num = round(self.plane.life / self.plane.sum_life * 100, 2)
+        text = self.small_font.render("%s" % blood_num + "%", 1, (0, 0, 0))
+        text_x = self.window_width // 2 - (text.get_width() // 2)
+        text_y = self.window_height - blood_height // 2 - text.get_height() // 2
+        self.screen.blit(text, (text_x, text_y))
         # * 绘制生命条数
         for index in range(self.plane.life_num, 0, -1):
             x = self.window_width - (self.life.get_width() * index)
-            y = self.window_height - self.life.get_height()
+            y = self.window_height - self.life.get_height() - blood_height
             self.screen.blit(self.life, (x, y))
         # * 输出游戏fps
         game_fps = str(int(self.clock_obj.get_fps())) + " fps"
@@ -250,6 +298,14 @@ class MyGame(object):
                         pg.mixer.music.pause()
                         # 暂停标志
                         self.game_pause = True
+            # 黑色子弹补给事件
+            elif event.type == self.black_bullet_arrive:
+                obj = BlackBulletSupply()
+                self.supply_lis.append(obj)
+            # 炸弹补给事件
+            elif event.type == self.bomb_arrive:
+                obj = BombSupply()
+                self.supply_lis.append(obj)
 
         # 主角的上下左右的长按事件
         key_pressed = pg.key.get_pressed()
@@ -342,10 +398,10 @@ class MyGame(object):
                 return
 
         if self.temp_count < self.plane.score:
-            if self.plane.score - self.temp_count < 100:
-                self.temp_count += 1
-            else:
+            if self.plane.score - self.temp_count < 500:
                 self.temp_count += 100
+            else:
+                self.temp_count += 500
 
     def again_game(self):
         self.over_flag = False
@@ -361,12 +417,14 @@ class MyGame(object):
         while not self.exit_flag:
             # 帧数设置
             self.clock_obj.tick(self.frame_num)
-            # 设置光标可见
-            pg.mouse.set_visible(self.mouse_visible)
             # 背景图
             self.screen.blit(self.background, (0, 0))
+            # 设置光标可见
+            pg.mouse.set_visible(True)
 
             if self.running_flag:
+                # 设置光标不可见
+                pg.mouse.set_visible(False)
                 self.game_running()
             elif self.over_flag:
                 self.game_over()
