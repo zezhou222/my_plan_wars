@@ -173,6 +173,8 @@ class Hero(Plane):
                 if self.life <= 0:
                     # 挂了的标志
                     self.active = False
+                    # 生命数减1
+                    self.life_num -= 1
                 # 检测自己是否没生命数了
                 if self.life_num <= 0:
                     return True

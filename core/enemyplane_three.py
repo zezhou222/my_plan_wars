@@ -47,7 +47,7 @@ class EnemyPlaneThree(Plane):
         # 初始位置
         plane = self.get_surface()
         x = self.window_width // 2 - (plane.get_width() // 2)
-        y = 0 - plane.get_height()
+        y = 0 - plane.get_height() - 100
         # 设置初始位置
         self.set_init_position(x, y)
         # 其它属性
